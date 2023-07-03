@@ -1,12 +1,12 @@
-def josephus(n, k):
-    people = list(range(1, n+1))
+def josephus(num, step):
+    people = list(range(1, num+1))
     people_out = []
-    i = 0
+    inc_count = 0
     while len(people) > 1:
         temp = people.pop(0)
-        i = i+1
-        if i == k:
-            i = 0
+        inc_count += 1
+        if inc_count == step:
+            inc_count = 0
             people_out.append(temp)
             continue
         people.append(temp)
@@ -15,5 +15,5 @@ def josephus(n, k):
 
 
 total_num = int(input("请输入总人数："))
-key_num = int(input("请输入循环的数："))
-josephus(total_num, key_num)
+step_num = int(input("请输入循环的数："))
+josephus(total_num, step_num)
