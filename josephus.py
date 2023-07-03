@@ -14,6 +14,6 @@ def josephus(n, k):
     print('最后生还者{}：'.format(people[0]))
 
 
-n = int(input("请输入总人数："))
-k = int(input("请输入循环的数："))
-josephus(n, k)
+total_num = int(input("请输入总人数："))
+key_num = int(input("请输入循环的数："))
+josephus(total_num, key_num)
