@@ -13,6 +13,7 @@ def josephus(n, k):
     print('出局顺序：{}'.format(people_out))
     print('最后生还者{}：'.format(people[0]))
 
+
 n = int(input("请输入总人数："))
 k = int(input("请输入循环的数："))
 josephus(n, k)
