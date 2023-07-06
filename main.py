@@ -7,4 +7,5 @@ if __name__ == '__main__':
     start_time = time.perf_counter()
     josephus_list(total_num, step_num)
     end_time = time.perf_counter()
-    print(end_time - start_time)
+    run_time = end_time-start_time
+    print('josephus_list运行时间:{}'.format(run_time))

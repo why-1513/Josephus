@@ -11,7 +11,7 @@ def josephus_list(num, step):
             continue
         people.append(temp)
     print('出局顺序：{}'.format(people_out))
-    print('最后生还者{}：'.format(people[0]))
+    print('最后生还者:{}'.format(people[0]))
 
 
 def josephus_list_input():
