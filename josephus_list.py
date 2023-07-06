@@ -1,4 +1,4 @@
-def josephus(num, step):
+def josephus_list(num, step):
     people = list(range(1, num+1))
     people_out = []
     inc_count = 0
@@ -14,6 +14,7 @@ def josephus(num, step):
     print('最后生还者{}：'.format(people[0]))
 
 
-total_num = int(input("请输入总人数："))
-step_num = int(input("请输入循环的数："))
-josephus(total_num, step_num)
+def josephus_list_input():
+    total_num = int(input("请输入总人数："))
+    step_num = int(input("请输入循环的数："))
+    return total_num, step_num
