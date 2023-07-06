@@ -26,7 +26,6 @@ class Josephus_ring:
         if self.total_num < 1 or self.step_num < 1:
             return None
         self.head = create_circular_linked_list(self.total_num)
-        inc_count = 0
         out_list = []
         # 定位到最后一个节点
         prev = self.head
