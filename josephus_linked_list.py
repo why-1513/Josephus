@@ -1,14 +1,24 @@
+from faker import Faker
+
+
 class Node:
-    def __init__(self, value):
+    def __init__(self, value, name):
         self.value = value
         self.next = None
+        self.name = name
 
 
 def create_circular_linked_list(total_num):
-    head = Node(1)
+    fk = Faker(locale="zh-CN")
+    name_list = []
+    for i in range(total_num):
+        name_list.append(fk.name())
+
+    print(name_list)
+    head = Node(1, name_list[0])
     node_current = head
     for i in range(2, total_num + 1):
-        node_new = Node(i)
+        node_new = Node(i, name_list[i-1])
         node_current.next = node_new
         node_current = node_new
 
@@ -37,10 +47,11 @@ class Josephus_ring:
                 prev = self.head
                 self.head = self.head.next
             prev.next = self.head.next
-            out_list.append(self.head.value)
+            out_list.append([self.head.value, self.head.name])
             self.head = self.head.next
-        print('出局顺序：{}'.format(out_list))
-        print('最后生还者:{}'.format(self.head.value))
+        print('出局者顺序：{}'.format(out_list))
+        print('幸存者序号:{}；幸存者姓名：{}'.format(self.head.value, self.head.name))
+
 
 
 

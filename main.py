@@ -1,6 +1,7 @@
 from josephus_list import *
 from josephus_linked_list import *
 import time
+from faker import Faker
 
 
 if __name__ == '__main__':
@@ -13,6 +14,7 @@ if __name__ == '__main__':
     run_time = end_time-start_time
     print('josephus_list运行时间:{}'.format(run_time))
     """
+
     # 测试josephus_linked_list
     josephus_ring_ = Josephus_ring()
     start_time = time.perf_counter()
@@ -20,3 +22,4 @@ if __name__ == '__main__':
     end_time = time.perf_counter()
     run_time = end_time - start_time
     print('josephus_list运行时间:{}'.format(run_time))
+
