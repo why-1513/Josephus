@@ -21,5 +21,5 @@ if __name__ == '__main__':
     josephus_ring_.josephus_ring_running()
     end_time = time.perf_counter()
     run_time = end_time - start_time
-    print('josephus_list运行时间:{}'.format(run_time))
+    print('josephus_linked_list运行时间:{}'.format(run_time))
 
