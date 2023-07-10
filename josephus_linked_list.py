@@ -1,7 +1,7 @@
 from faker import Faker
 
 
-class Node:
+class Person:
     def __init__(self, value, name):
         self.value = value
         self.next = None
@@ -15,10 +15,10 @@ def create_circular_linked_list(total_num):
         name_list.append(fk.name())
 
     print(name_list)
-    head = Node(1, name_list[0])
+    head = Person(1, name_list[0])
     node_current = head
     for i in range(2, total_num + 1):
-        node_new = Node(i, name_list[i-1])
+        node_new = Person(i, name_list[i-1])
         node_current.next = node_new
         node_current = node_new
 
@@ -51,7 +51,6 @@ class Josephus_ring:
             self.head = self.head.next
         print('出局者顺序：{}'.format(out_list))
         print('幸存者序号:{}；幸存者姓名：{}'.format(self.head.value, self.head.name))
-
 
 
 
