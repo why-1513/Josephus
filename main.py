@@ -2,13 +2,19 @@ from josephus_list import *
 from josephus_linked_list import *
 from Josephus_linkedlist_inherit import *
 import time
-from faker import Faker
-
+from create_name_file import create_name_json
+from File_read import json_read
 
 if __name__ == '__main__':
-    josephus = Josephus(3)
-    for i in range(1, 9):
-        josephus.add_person(i)
+    total_num = int(input("请输入总人数："))
+    step_num = int(input("请输入循环的数："))
+    create_name_json(total_num)  # 创建姓名文件
+    info = json_read('names.json')
+
+    josephus = Josephus(step_num)
+
+    for i in range(1, total_num + 1):
+        josephus.add_person(i, info[0][i-1]["name"])
 
     for person in josephus:
         print(person)

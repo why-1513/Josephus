@@ -1,7 +1,8 @@
 class Person:
-    def __init__(self, value):
+    def __init__(self, value, name):
         self.value = value
         self.next = None
+        self.name = name
 
 
 class JosephusLinkedList:
@@ -10,8 +11,8 @@ class JosephusLinkedList:
         self.head = None
         self.length = 0
 
-    def add_person(self, value):
-        new_person = Person(value)
+    def add_person(self, value, name):
+        new_person = Person(value, name)
         if not self.head:
             self.head = new_person
             new_person.next = self.head
@@ -69,7 +70,8 @@ class Josephus(JosephusLinkedList):
         super().__init__()
         self.step = step_num
         self.out_list = []
-        self.survivor = None
+        self.survivor_value = None
+        self.survivor_name = None
 
     def __iter__(self):
         return self
@@ -80,8 +82,10 @@ class Josephus(JosephusLinkedList):
 
         if self.length == 1:
             value = self.head.value
+            name = self.head.name
             self.delete_person(self.head.value)
-            self.survivor = value
+            self.survivor_value = value
+            self.survivor_name = name
             return value
 
         temp = self.head
@@ -90,11 +94,12 @@ class Josephus(JosephusLinkedList):
             temp = temp.next
 
         value = temp.value
+        name = temp.name
         self.delete_person(value)
-        self.out_list.append(value)
+        self.out_list.append([value, name])
         self.head = temp.next
         return value
 
     def josephus_print(self):
         print('出局顺序：{}'.format(self.out_list))
-        print('幸存者:{}'.format(self.survivor))
+        print('幸存者:{},{}'.format(self.survivor_value, self.survivor_name))
