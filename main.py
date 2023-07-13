@@ -2,8 +2,8 @@ from Josephus_list import *
 from Josephus_linked_list import *
 from Josephus_linkedlist_inherit import *
 import time
-from CreateInfoFile import create_info_json
-from FileReader import json_read
+from CreateInfoFile import *
+from FileReader import *
 
 
 def wait_for_input_int(prompt, check_func, error_prompt):
@@ -24,8 +24,13 @@ if __name__ == '__main__':
     total_num = wait_for_input_int(prompt="请输入总人数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
     step_num = wait_for_input_int(prompt="请输入淘汰的数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
 
-    create_info_json(total_num)  # 创建姓名文件
-    info_list = json_read('info.json')
+    # create_info_json(total_num)
+    # file = FileReader('info.json')
+    # info_list = file.json_read()
+
+    # create_info_txt(total_num)
+    # file = FileReader('info.txt')
+    # info_list = file.txt_read()
 
     josephus = Josephus(step_num)
 
