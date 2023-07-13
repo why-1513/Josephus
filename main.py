@@ -16,7 +16,7 @@ def wait_for_input_int(prompt, check_func, error_prompt):
             break
         except ValueError:
             print(error_prompt)
-        return value
+    return value
 
 
 if __name__ == '__main__':
