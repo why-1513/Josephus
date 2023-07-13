@@ -3,7 +3,7 @@ from Josephus_linked_list import *
 from Josephus_linkedlist_inherit import *
 import time
 from CreateInfoFile import create_name_json
-from Filereader import json_read
+from FileReader import json_read
 
 
 def wait_for_input_int(prompt, check_func, error_prompt):
