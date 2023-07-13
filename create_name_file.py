@@ -13,3 +13,5 @@ def create_name_json(total_num):
         name_list.append(name)
         with open('names.json', 'w') as f:
             json.dump(name_list, f)
+
+    f.close()

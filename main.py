@@ -5,9 +5,24 @@ import time
 from create_name_file import create_name_json
 from File_read import json_read
 
+
+def wait_for_input_int(prompt, check_func, error_prompt):
+    while True:
+        value = input(prompt)
+        try:
+            value = int(value)
+            if check_func(value):
+                raise ValueError
+            break
+        except ValueError:
+            print(error_prompt)
+        return value
+
+
 if __name__ == '__main__':
-    total_num = int(input("请输入总人数："))
-    step_num = int(input("请输入循环的数："))
+    total_num = wait_for_input_int(prompt="请输入总人数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
+    step_num = wait_for_input_int(prompt="请输入淘汰的数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
+
     create_name_json(total_num)  # 创建姓名文件
     info = json_read('names.json')
 
