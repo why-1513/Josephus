@@ -3,7 +3,7 @@ import json
 import random
 
 
-def create_name_json(total_num):
+def create_info_json(total_num):
     fk = Faker("zh_CN")
     person_info = []
     for i in range(total_num):
