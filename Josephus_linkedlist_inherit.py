@@ -1,8 +1,10 @@
 class Person:
-    def __init__(self, value, name):
+    def __init__(self, value, name, gender, age):
         self.value = value
         self.next = None
         self.name = name
+        self.gender = gender
+        self.age = age
 
 
 class JosephusLinkedList:
@@ -11,8 +13,8 @@ class JosephusLinkedList:
         self.head = None
         self.length = 0
 
-    def add_person(self, value, name):
-        new_person = Person(value, name)
+    def add_person(self, value, name, gender, age):
+        new_person = Person(value, name, gender, age)
         if not self.head:
             self.head = new_person
             new_person.next = self.head
@@ -52,26 +54,13 @@ class JosephusLinkedList:
             temp.next = temp.next.next
             self.length -= 1
 
-    def display(self):
-        if not self.head:
-            print("链表为空。")
-            return
-        temp = self.head
-        while True:
-            print(temp.value)
-            temp = temp.next
-            if temp == self.head:
-                break
-        print()
-
 
 class Josephus(JosephusLinkedList):
     def __init__(self, step_num):
         super().__init__()
         self.step = step_num
         self.out_list = []
-        self.survivor_value = None
-        self.survivor_name = None
+        self.survivor = None
 
     def __iter__(self):
         return self
@@ -81,25 +70,28 @@ class Josephus(JosephusLinkedList):
             raise StopIteration
 
         if self.length == 1:
-            value = self.head.value
-            name = self.head.name
-            self.delete_person(self.head.value)
-            self.survivor_value = value
-            self.survivor_name = name
-            return value
+            self.survivor = self.head
+            self.delete_person(self.survivor.value)
+            return self.survivor
 
         temp = self.head
 
         for i in range(self.step - 1):
             temp = temp.next
 
-        value = temp.value
-        name = temp.name
-        self.delete_person(value)
-        self.out_list.append([value, name])
+        out_person = temp
+        self.out_list.append(out_person)
+        self.delete_person(out_person.value)
+
         self.head = temp.next
-        return value
+
+        return out_person
 
     def josephus_print(self):
-        print('出局顺序：{}'.format(self.out_list))
-        print('幸存者:{},{}'.format(self.survivor_value, self.survivor_name))
+        print('出局者顺序:')
+        for i in range(len(self.out_list)):
+            print('编号：{} 姓名:{} 性别：{} 年龄：{}'.format(
+                self.out_list[i].value, self.out_list[i].name, self.out_list[i].gender, self.out_list[i].age))
+        print('幸存者：')
+        print('编号：{} 姓名:{} 性别：{} 年龄：{}'.format(
+            self.survivor.value, self.survivor.name, self.survivor.gender, self.survivor.age))

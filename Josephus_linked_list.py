@@ -14,7 +14,6 @@ def create_circular_linked_list(total_num):
     for i in range(total_num):
         name_list.append(fk.name())
 
-    print(name_list)
     head = Person(1, name_list[0])
     node_current = head
     for i in range(2, total_num + 1):
