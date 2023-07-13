@@ -4,7 +4,6 @@ import random
 
 
 def create_name_json(total_num):
-    # fk = Faker(locale="zh-CN")
     fk = Faker("zh_CN")
     person_info = []
     for i in range(total_num):
