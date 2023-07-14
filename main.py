@@ -25,14 +25,15 @@ if __name__ == '__main__':
     step_num = wait_for_input_int(prompt="请输入淘汰的数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
 
     # create_info_json(total_num)
-    # file = FileReader('info.json')
-    # info_list = file.json_read()
+    file = FileReader('info.json')
+    info_list = file.json_read()
 
     # create_info_txt(total_num)
     # file = FileReader('info.txt')
     # info_list = file.txt_read()
 
     josephus = Josephus(step_num)
+    total_num = len(info_list)
 
     for i in range(1, total_num + 1):
         josephus.add_person(i, info_list[i-1]["name"], info_list[i-1]["gender"], info_list[i-1]["age"])
