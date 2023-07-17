@@ -18,6 +18,15 @@ class Josephus(deque):
     def add_person(self, new_person):
         self.append(new_person)
 
+    def delete_person(self):
+        self.rotate(-self.step)
+        out_person = self.pop()
+        return out_person
+
+    def reset_start_pos(self):
+        self.rotate(-self.start_pos)
+        self.start_pos = None
+
     def __iter__(self):
         return self
 
@@ -28,11 +37,9 @@ class Josephus(deque):
 
         if self.start_pos is not None:
             # 旋转到指定位置
-            self.rotate(-self.start_pos)
-            self.start_pos = None
+            self.reset_start_pos()
 
-        self.rotate(-self.step)
-        out_person = self.pop()
+        out_person = self.delete_person()
         self.out_list.append(out_person)
 
         return out_person

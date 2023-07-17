@@ -38,6 +38,6 @@ if __name__ == '__main__':
         josephus.add_person(Person(info['name'], info['gender'], info['age']))
 
     for person in josephus:
-        print(person)
+        pass
     josephus.josephus_print()
 
