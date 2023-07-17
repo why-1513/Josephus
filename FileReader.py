@@ -1,4 +1,5 @@
 import json
+import logging
 
 
 class FileReader:
@@ -11,8 +12,9 @@ class FileReader:
             with open(self.filename, 'r') as f:
                 person_infos = json.load(f)
         except FileNotFoundError:
-            print("File not found: {}".format(self.filename))
-            return []
+            logging.log(logging.ERROR, "File not found: {}".format(self.filename))
+            logging.error("File not found: {}".format(self.filename))
+            raise ("File not found: {}".format(self.filename))
 
         except json.decoder.JSONDecodeError:
             print("JSON decode error: {}".format(self.filename))
@@ -26,13 +28,12 @@ class FileReader:
             with open(self.filename, 'r') as f:
                 lines = f.readlines()
             for line in lines:
-                # 使用strip方法去除字符串两端的空白字符，使用split方法将每一行的信息按照'，'进行分隔 ['姓名：程凤兰', '性别：女', '年龄：47']
-                parts = line.strip().split('，')
-                # [3:]表示从字符串的第四个字符开始
+                # 使用strip方法去除字符串两端的空白字符，使用split方法将每一行的信息按照'，'进行分隔 ['程凤兰', '女', '47']
+                parts = line.strip().split(':')
                 info = {
-                    'name': parts[0][3:],
-                    'gender': parts[1][3:],
-                    'age': int(parts[2][3:])
+                    'name': parts[0],
+                    'gender': parts[1],
+                    'age': int(parts[2])
                 }
                 person_infos.append(info)
         except FileNotFoundError:

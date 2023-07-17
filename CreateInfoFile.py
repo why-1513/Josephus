@@ -28,6 +28,6 @@ def create_info_txt(total_num):
     print(person_infos)
     f = open('info.txt', 'w')
     for person in person_infos:
-        f.write(f"姓名：{person['name']}，性别：{person['gender']}，年龄：{person['age']}\n")
+        f.write(f"{person['name']}:{person['gender']}:{person['age']}\n")
     f.close()
 
