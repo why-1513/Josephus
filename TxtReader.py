@@ -6,7 +6,7 @@ class TxtReader:
             raise ValueError(f"Invalid file type, '{filename}' is not a txt file")
         self.filename = filename
 
-    def read_file(self):
+    def read_txt(self):
         person_infos = []
         try:
             with open(self.filename, 'r') as f:
