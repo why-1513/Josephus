@@ -19,15 +19,18 @@ def wait_for_input_int(prompt, check_func, error_prompt):
     return value
 
 
-if __name__ == '__main__':
-
+def start_get_input():
     # total_num = wait_for_input_int(prompt="请输入总人数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
-    step_num = wait_for_input_int(prompt="请输入循环的数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
-    start_pos = wait_for_input_int(prompt="请输入开始的位置：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于等于零的数")
+    _step_num = wait_for_input_int(prompt="请输入循环的数：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于零的数")
+    _start_pos = wait_for_input_int(prompt="请输入开始的位置：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于等于零的数")
+    return _step_num, _start_pos
 
+
+if __name__ == '__main__':
+    step_num, start_pos = start_get_input()
     # create_info_txt(total_num)
     file = TxtReader('info1.txt')
-    info_list = file.read_file()
+    info_list = file.read_txt()
 
     # file = ZipReader('info.zip')
     # file.list_files()
@@ -35,14 +38,13 @@ if __name__ == '__main__':
 
     # csv_reader = CsvReader('info.csv')
     # info_list = csv_reader.read_csv()
-
-    josephus = Josephus(step_num, start_pos)
     total_num = len(info_list)
 
-    for info in info_list:
-        josephus.add_person(Person(info['name'], info['gender'], info['age']))
+    josephus = Josephus(step_num, start_pos)
+    josephus.add_person(info_list)
 
     for person in josephus:
         pass
     josephus.josephus_print()
+
 

@@ -15,7 +15,7 @@ class Josephus(deque):
         self.out_list = []
         self.start_pos = start_pos
 
-    def add_person(self, new_person):
+    def add_one_person(self, new_person):
         self.append(new_person)
 
     def delete_person(self):
@@ -23,9 +23,13 @@ class Josephus(deque):
         out_person = self.pop()
         return out_person
 
-    def reset_start_pos(self):
+    def find_start_pos(self):
         self.rotate(-self.start_pos)
         self.start_pos = None
+
+    def add_person(self, info_list):
+        for info in info_list:
+            self.add_one_person(Person(info['name'], info['gender'], info['age']))
 
     def __iter__(self):
         return self
@@ -37,7 +41,7 @@ class Josephus(deque):
 
         if self.start_pos is not None:
             # 旋转到指定位置
-            self.reset_start_pos()
+            self.find_start_pos()
 
         out_person = self.delete_person()
         self.out_list.append(out_person)
@@ -52,3 +56,4 @@ class Josephus(deque):
         print('幸存者：')
         survivor = self.survivor
         print('姓名:{} 性别：{} 年龄：{}'.format(survivor.name, survivor.gender, survivor.age))
+
