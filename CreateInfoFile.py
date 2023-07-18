@@ -50,5 +50,3 @@ def create_info_csv(total_num):
         for person in person_infos:
             writer.writerow(person)
 
-
-create_info_csv(18)
