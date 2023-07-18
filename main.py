@@ -24,7 +24,7 @@ if __name__ == '__main__':
     start_pos = wait_for_input_int(prompt="请输入开始的位置：", check_func=lambda x: x < 0, error_prompt="非法输入，请输入大于等于零的数")
 
     # create_info_txt(total_num)
-    file = TxtReader('info.txt')
+    file = TxtReader('info1.txt')
     info_list = file.read_file()
 
     josephus = Josephus(step_num, start_pos)
