@@ -2,6 +2,8 @@
 class TxtReader:
 
     def __init__(self, filename=''):
+        if not filename.endswith('.txt'):
+            raise ValueError(f"Invalid file type, '{filename}' is not a txt file")
         self.filename = filename
 
     def read_file(self):
