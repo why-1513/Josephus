@@ -1,13 +1,14 @@
 import csv
+from TxtReader import Reader
 
 
-class CsvReader:
+class CsvReader(Reader):
     def __init__(self, filename=''):
         if not filename.endswith('.csv'):
             raise ValueError(f"Invalid file type, '{filename}' is not a csv file")
         self.filename = filename
 
-    def read_csv(self):
+    def read_all_person(self):
         person_infos = []
         try:
             with open(self.filename, 'r', newline='') as csvfile:

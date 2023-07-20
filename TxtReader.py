@@ -1,12 +1,17 @@
+class Reader:
 
-class TxtReader:
+    def read_all_person(self):
+        raise NotImplementedError()
+
+
+class TxtReader(Reader):
 
     def __init__(self, filename=''):
         if not filename.endswith('.txt'):
             raise ValueError(f"Invalid file type, '{filename}' is not a txt file")
         self.filename = filename
 
-    def read_txt(self):
+    def read_all_person(self):
         person_infos = []
         try:
             with open(self.filename, 'r') as f:
