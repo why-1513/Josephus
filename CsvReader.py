@@ -1,18 +1,19 @@
 import csv
 from TxtReader import Reader
+from Josephus_deque import Person, Josephus
 
 
-class CsvReader(Reader):
+class CsvReader:
+
     def __init__(self, filename=''):
         if not filename.endswith('.csv'):
             raise ValueError(f"Invalid file type, '{filename}' is not a csv file")
         self.filename = filename
 
-    def read_all_person(self):
-        person_infos = []
+    def read_person_info(self, step_num, start_pos):
+        person_info = Josephus(step_num, start_pos)
         try:
             with open(self.filename, 'r', newline='') as csvfile:
-                # 每一行都被解析为一个字典，其中字典的键是CSV文件的表头，值是该行的值。
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     name = row['name']
@@ -23,15 +24,10 @@ class CsvReader(Reader):
                         raise ValueError(f"Invalid age '{row['age']}' in file '{self.filename}'")
                     if gender not in ['男', '女']:
                         raise ValueError(f"Invalid gender '{gender}' in file '{self.filename}'")
-                    info_dict = {
-                        'name': name,
-                        'gender': gender,
-                        'age': age
-                    }
-                    person_infos.append(info_dict)
-
+                    person = Person(name, gender, age)
+                    person_info.add_one_person(person)
         except FileNotFoundError:
             raise FileNotFoundError(f"File '{self.filename}' not found")
 
-        return person_infos
+        return person_info
 
