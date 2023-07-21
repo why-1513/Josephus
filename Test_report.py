@@ -1,7 +1,6 @@
 import unittest
 from TestJosephus import TestJosephus
 
-print(__name__)
 
 if __name__ == '__main__':
     # 构造测试集，实例化测试套件
