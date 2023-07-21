@@ -1,23 +1,3 @@
-import logging
-import os
-
-
-class Logger:
-    def __init__(self, name, log_file=None):
-        self.logger = logging.getLogger(name)  # 创建一个logger
-        self.logger.setLevel(logging.INFO)
-        handler = logging.StreamHandler()  # 用于将日志消息输出到控制台
-        formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')  # 一个格式化字符串，用于指定日志消息的格式
-        handler.setFormatter(formatter)
-        self.logger.addHandler(handler)
-
-    def log_info(self, message):
-        self.logger.info(message)
-
-    def log_error(self, message):
-        self.logger.error(message)
-
-
 def wait_for_input_int(logger, prompt, check_func, error_prompt):
     while True:
         value = input(prompt)
