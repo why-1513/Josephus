@@ -2,12 +2,15 @@ from Josephus_deque import Josephus
 from TxtReader import TxtReader
 from ZipReader import ZipReader
 from CsvReader import CsvReader
-from Log import Logger, start_get_input
+from GetInput import start_get_input
+import logging
 
 
 if __name__ == '__main__':
-    logger = Logger('MyLogger', log_file='test.log')
-    step_num, start_pos = start_get_input(logger)
+    # Configure logging to save messages to a file
+    logging.basicConfig(filename='test.log', filemode='w',
+                        format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
+    step_num, start_pos = start_get_input()
     # create_info_txt(total_num)
     # file = TxtReader('info1.txt')
 
