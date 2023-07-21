@@ -33,6 +33,8 @@ class Josephus(deque):
     def __next__(self):
         if len(self) == 1:
             self.survivor = self.pop()
+            return self.survivor
+        elif len(self) == 0:
             raise StopIteration
 
         if self.start_pos is not None:
