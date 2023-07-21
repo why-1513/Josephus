@@ -27,10 +27,6 @@ class Josephus(deque):
         self.rotate(-self.start_pos)
         self.start_pos = None
 
-    def add_person(self, info_list):
-        for info in info_list:
-            self.add_one_person(Person(info['name'], info['gender'], info['age']))
-
     def __iter__(self):
         return self
 
