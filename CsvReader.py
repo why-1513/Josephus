@@ -1,9 +1,9 @@
 import csv
-from TxtReader import Reader
 from Josephus_deque import Person, Josephus
+from FileReader import Reader
 
 
-class CsvReader:
+class CsvReader(Reader):
 
     def __init__(self, filename=''):
         if not filename.endswith('.csv'):

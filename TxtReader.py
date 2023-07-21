@@ -1,13 +1,8 @@
 from Josephus_deque import Person, Josephus
+from FileReader import Reader
 
 
-class Reader:
-
-    def read_all_person(self):
-        raise NotImplementedError()
-
-
-class TxtReader:
+class TxtReader(Reader):
 
     def __init__(self, filename=''):
         if not filename.endswith('.txt'):
