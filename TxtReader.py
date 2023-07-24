@@ -1,4 +1,4 @@
-from Josephus_deque import Person, Josephus
+from Josephus_deque import Person
 from FileReader import Reader
 
 
@@ -8,9 +8,9 @@ class TxtReader(Reader):
         if not filename.endswith('.txt'):
             raise ValueError(f"Invalid file type, '{filename}' is not a txt file")
         self.filename = filename
+        self.persons = []
 
-    def read_person_info(self, step_num, start_pos):
-        person_info = Josephus(step_num, start_pos)
+    def read_person_info(self):
         try:
             with open(self.filename, 'r') as f:
                 lines = f.readlines()
@@ -24,8 +24,6 @@ class TxtReader(Reader):
                 except ValueError:
                     raise ValueError(f"Invalid age '{age}' on line '{line.strip()}' in file '{self.filename}'")
                 person = Person(name, gender, age)
-                person_info.add_one_person(person)
+                self.persons.append(person)
         except FileNotFoundError:
             raise FileNotFoundError(f"File '{self.filename}' not found")
-
-        return person_info
