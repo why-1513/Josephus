@@ -31,28 +31,35 @@ class TestJosephus(unittest.TestCase):
         self.assertEqual(out_person, p2)
 
     def test_read_person_info_from_txt(self):
-        self.josephus = Josephus(3, 0)
-        file0 = TxtReader('info1.txt')
-        josephus = file0.read_person_info(3, 0)
+        step_num, start_pos = [3, 0]
+        reader = TxtReader('info1.txt')
+
+        josephus = Josephus(step_num, start_pos)
+        josephus.add_persons(reader)
         self.assertEqual(len(josephus), 8)
 
     def test_read_person_info_from_csv(self):
-        self.josephus = Josephus(3, 0)
-        file1 = CsvReader('info.csv')
-        josephus = file1.read_person_info(3, 0)
+        step_num, start_pos = [4, 1]
+        reader = CsvReader('info.csv')
+
+        josephus = Josephus(step_num, start_pos)
+        josephus.add_persons(reader)
         self.assertEqual(len(josephus), 18)
 
     def test_read_person_info_from_zip(self):
-        self.josephus = Josephus(3, 0)
-        file2 = ZipReader('info.zip')
-        josephus = file2.read_person_info(3, 0)
+        step_num, start_pos = [5, 2]
+        reader = ZipReader('info.zip')
+
+        josephus = Josephus(step_num, start_pos)
+        josephus.add_persons(reader)
         self.assertEqual(len(josephus), 36)
 
     def test_josephus_txt(self):
         step_num, start_pos = [3, 0]
-        file_txt = TxtReader('info1.txt')
+        reader = TxtReader('info1.txt')
 
-        josephus = file_txt.read_person_info(step_num, start_pos)
+        josephus = Josephus(step_num, start_pos)
+        josephus.add_persons(reader)
 
         for person in josephus:
             pass
@@ -60,9 +67,10 @@ class TestJosephus(unittest.TestCase):
 
     def test_josephus_csv(self):
         step_num, start_pos = [4, 1]
-        file_csv = CsvReader('info.csv')
+        reader = CsvReader('info.csv')
 
-        josephus = file_csv.read_person_info(step_num, start_pos)
+        josephus = Josephus(step_num, start_pos)
+        josephus.add_persons(reader)
 
         for person in josephus:
             pass
@@ -70,12 +78,13 @@ class TestJosephus(unittest.TestCase):
 
     def test_josephus_zip(self):
         step_num, start_pos = [5, 2]
-        file_zip = ZipReader('info.zip')
+        reader = ZipReader('info.zip')
 
-        josephus = file_zip.read_person_info(step_num, start_pos)
+        josephus = Josephus(step_num, start_pos)
+        josephus.add_persons(reader)
 
         for person in josephus:
             pass
-        self.assertEqual(josephus.survivor.name, '何秀华')
+        self.assertEqual(josephus.survivor.name, '李凤英')
 
 

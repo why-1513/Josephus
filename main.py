@@ -11,15 +11,12 @@ if __name__ == '__main__':
     logging.basicConfig(filename='test.log', filemode='w',
                         format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
     step_num, start_pos = start_get_input()
-    # create_info_txt(total_num)
-    # file = TxtReader('info1.txt')
+    # reader = TxtReader('info1.txt')
+    # reader = CsvReader('info.csv')
+    reader = ZipReader('info.zip')
 
-    # file = CsvReader('info.csv')
-
-    file = ZipReader('info.zip')
-    # file.list_files()
-
-    josephus = file.read_person_info(step_num, start_pos)
+    josephus = Josephus(step_num, start_pos)
+    josephus.add_persons(reader)
 
     for person in josephus:
         pass
