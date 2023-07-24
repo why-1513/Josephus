@@ -18,6 +18,10 @@ class Josephus(deque):
     def add_one_person(self, new_person):
         self.append(new_person)
 
+    def add_persons(self, reader):
+        reader.read_person_info()
+        self.extend(reader.persons)
+
     def delete_person(self):
         self.rotate(-self.step)
         out_person = self.pop()
