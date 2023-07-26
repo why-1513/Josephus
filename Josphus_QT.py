@@ -88,6 +88,7 @@ class JosephusChooser(QWidget):
     def run_console(self):
         file_name = self.file_text.text()
         if not file_name:
+            logging.error('Please select a file')
             print('Please select a file')
             return
         elif file_name.endswith('.txt'):
@@ -97,6 +98,7 @@ class JosephusChooser(QWidget):
         elif file_name.endswith('.zip'):
             reader = ZipReader(file_name)
         else:
+            logging.error('Unsupported file type')
             print('Unsupported file type')
             return
 
@@ -150,6 +152,8 @@ class ResultWindow(QWidget):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(filename='test.log', filemode='a',
+                        format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
     app = QApplication(sys.argv)
     chooser = JosephusChooser()
     sys.exit(app.exec_())
