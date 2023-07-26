@@ -7,6 +7,7 @@ from ZipReader import ZipReader
 from CsvReader import CsvReader
 from GetInput import start_get_input
 import sys
+import logging
 
 
 class JosephusChooser(QWidget):
@@ -17,25 +18,25 @@ class JosephusChooser(QWidget):
 
         # 创建选择文件框
         self.file_label = QLabel('File:', self)
-        self.file_label.move(50, 20)
+        self.file_label.move(50, 25)
         self.file_text = QLineEdit(self)
-        self.file_text.move(90, 20)
+        self.file_text.move(90, 25)
         self.file_text.resize(240, 25)  # 调整文本框大小
         self.file_button = QPushButton('Select File', self)
-        self.file_button.move(350, 20)
+        self.file_button.move(350, 25)
         self.file_button.resize(80, 25)  # 调整按钮大小
         self.file_button.setFont(QFont("Arial", 10))  # 设置字体
         self.file_button.clicked.connect(self.select_file)
 
         # 创建选择程序类型按钮
         self.gui_button = QPushButton('GUI', self)
-        self.gui_button.move(100, 80)
+        self.gui_button.move(100, 85)
         self.file_label.setFont(QFont("Arial", 14))  # 设置字体
         self.gui_button.resize(100, 25)  # 调整按钮大小
         self.gui_button.setFont(QFont("Arial", 10))  # 设置字体
         self.gui_button.clicked.connect(self.run_gui)
         self.console_button = QPushButton('Console', self)
-        self.console_button.move(280, 80)
+        self.console_button.move(280, 85)
         self.console_button.resize(100, 25)  # 调整按钮大小
         self.console_button.setFont(QFont("Arial", 10))  # 设置字体
         self.console_button.clicked.connect(self.run_console)
