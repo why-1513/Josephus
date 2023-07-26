@@ -58,6 +58,7 @@ class JosephusChooser(QWidget):
         file_name = self.file_text.text()
         if not file_name:
             QMessageBox.warning(self, 'Warning', 'Please select a file')
+            logging.error('From run_gui: Please select a file')
             return
         elif file_name.endswith('.txt'):
             reader = TxtReader(file_name)
@@ -66,7 +67,8 @@ class JosephusChooser(QWidget):
         elif file_name.endswith('.zip'):
             reader = ZipReader(file_name)
         else:
-            print('Unsupported file type')
+            QMessageBox.warning(self, 'Warning', 'Unsupported file type')
+            logging.error('From run_gui: Unsupported file type')
             return
 
         step_num, ok = QInputDialog.getInt(self, 'Step Number', 'Enter the step number:')
@@ -89,7 +91,7 @@ class JosephusChooser(QWidget):
         file_name = self.file_text.text()
         if not file_name:
             logging.error('Please select a file')
-            print('Please select a file')
+            print('From run_console: Please select a file')
             return
         elif file_name.endswith('.txt'):
             reader = TxtReader(file_name)
@@ -99,7 +101,7 @@ class JosephusChooser(QWidget):
             reader = ZipReader(file_name)
         else:
             logging.error('Unsupported file type')
-            print('Unsupported file type')
+            print('From run_console: Unsupported file type')
             return
 
         step_num, start_pos = start_get_input()
