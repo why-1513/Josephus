@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QFileDialog, \
-    QMessageBox, QInputDialog, QTableWidget, QTableWidgetItem
+    QMessageBox, QInputDialog, QTableWidget, QTableWidgetItem, QLineEdit
 from Josephus_deque import Josephus
 from TxtReader import TxtReader
 from ZipReader import ZipReader
@@ -11,27 +11,32 @@ import sys
 class JosephusChooser(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('Josephus')
-        self.setGeometry(800, 400, 300, 150)
+        self.setWindowTitle('Josephus Chooser')
+        self.setGeometry(800, 400, 480, 150)
 
-        # 创建选择文件按钮
+        # 创建选择文件框
         self.file_label = QLabel('File:', self)
-        self.file_label.move(20, 20)
-        self.file_text = QLabel('Not Set', self)
-        self.file_text.move(100, 20)
+        self.file_label.move(50, 25)
+        self.file_text = QLineEdit(self)
+        self.file_text.move(80, 20)
+        self.file_text.resize(250, 25)  # 调整文本框大小
         self.file_button = QPushButton('Select File', self)
-        self.file_button.move(200, 20)
+        self.file_button.move(350, 20)
+        self.file_button.resize(80, 25)  # 调整按钮大小
         self.file_button.clicked.connect(self.select_file)
 
         # 创建选择程序类型按钮
         self.gui_button = QPushButton('GUI', self)
-        self.gui_button.move(50, 80)
+        self.gui_button.move(100, 80)
+        self.gui_button.resize(100, 25)  # 调整按钮大小
         self.gui_button.clicked.connect(self.run_gui)
         self.console_button = QPushButton('Console', self)
-        self.console_button.move(150, 80)
+        self.console_button.move(280, 80)
+        self.console_button.resize(100, 25)  # 调整按钮大小
         self.console_button.clicked.connect(self.run_console)
 
         self.result_window = None
+        self.setFixedSize(self.size())  # 固定窗口大小
         self.show()
 
     def select_file(self):
@@ -134,6 +139,7 @@ class ResultWindow(QWidget):
         layout = QVBoxLayout()
         layout.addWidget(table)
         self.setLayout(layout)
+        self.setFixedSize(self.size())  # 固定窗口大小
         self.show()
 
 
