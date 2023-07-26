@@ -39,4 +39,3 @@ class ZipReader(Reader):
                 raise KeyError(f"File '{file_name}' not found in zip file '{self.filename}'")
             except zipfile.BadZipFile:
                 raise zipfile.BadZipFile(f"Invalid zip file '{self.filename}'")
-

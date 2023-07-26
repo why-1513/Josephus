@@ -86,5 +86,3 @@ class TestJosephus(unittest.TestCase):
         for person in josephus:
             pass
         self.assertEqual(josephus.survivor.name, '李凤英')
-
-

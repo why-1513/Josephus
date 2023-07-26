@@ -21,6 +21,3 @@ if __name__ == '__main__':
     for person in josephus:
         pass
     josephus.josephus_print()
-
-
-

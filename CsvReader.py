@@ -28,4 +28,3 @@ class CsvReader(Reader):
                     self.persons.append(person)
         except FileNotFoundError:
             raise FileNotFoundError(f"File '{self.filename}' not found")
-
