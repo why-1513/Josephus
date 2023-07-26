@@ -74,9 +74,22 @@ class JosephusChooser(QWidget):
         step_num, ok = QInputDialog.getInt(self, 'Step Number', 'Enter the step number:')
         if not ok:
             return
+        while step_num <= 0:
+            QMessageBox.warning(self, 'Warning', 'Please enter a non-negative integer')
+            logging.error('From run_gui: Please enter a non-negative integer')
+            step_num, ok = QInputDialog.getInt(self, 'Step Number', 'Enter the step number:')
+            if not ok:
+                return
+
         start_pos, ok = QInputDialog.getInt(self, 'Start Position', 'Enter the start position:')
         if not ok:
             return
+        while start_pos < 0:
+            QMessageBox.warning(self, 'Warning', 'Please enter a non-negative integer')
+            logging.error('From run_gui: Please enter a non-negative integer')
+            start_pos, ok = QInputDialog.getInt(self, 'Start Position', 'Enter the start position:')
+            if not ok:
+                return
 
         josephus = Josephus(step_num, start_pos)
         josephus.add_persons(reader)
