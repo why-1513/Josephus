@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QFileDialog, QMessageBox, QInputDialog
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QFileDialog, \
+    QMessageBox, QInputDialog, QTableWidget, QTableWidgetItem
 from Josephus_deque import Josephus
 from TxtReader import TxtReader
 from ZipReader import ZipReader
@@ -70,6 +71,8 @@ class JosephusChooser(QWidget):
             pass
 
         # 显示结果
+        self.result_window = ResultWindow(out_list=josephus.out_list, survivor=josephus.survivor)
+        self.result_window.show()
 
     def run_console(self):
         file_name = self.file_text.text()
@@ -95,6 +98,43 @@ class JosephusChooser(QWidget):
         for person in josephus:
             pass
         josephus.josephus_print()
+
+
+class ResultWindow(QWidget):
+    def __init__(self, out_list, survivor):
+        super().__init__()
+        self.setWindowTitle('Josephus Result')
+        self.setGeometry(100, 100, 400, 400)
+
+        # 创建表格控件并设置列数
+        table = QTableWidget(self)
+        table.setColumnCount(4)
+
+        # 设置表头
+        table.setHorizontalHeaderLabels(['name', 'gender', 'age', 'State'])
+
+        # 将淘汰者信息添加到表格中
+        for i, item in enumerate(out_list):
+            table.insertRow(i)
+            table.setItem(i, 0, QTableWidgetItem(item.name))
+            table.setItem(i, 1, QTableWidgetItem(item.gender))
+            table.setItem(i, 2, QTableWidgetItem(str(item.age)))
+            table.setItem(i, 3, QTableWidgetItem('Loser'))
+
+        # 将幸存者信息添加到表格中
+        if survivor is not None:
+            table.insertRow(len(out_list))
+            table.setItem(len(out_list), 0, QTableWidgetItem(survivor.name))
+            table.setItem(len(out_list), 1, QTableWidgetItem(survivor.gender))
+            table.setItem(len(out_list), 2, QTableWidgetItem(str(survivor.age)))
+            table.setItem(len(out_list), 3, QTableWidgetItem('Survivor'))
+
+        # 调整表格大小并创建布局
+        table.resizeColumnsToContents()
+        layout = QVBoxLayout()
+        layout.addWidget(table)
+        self.setLayout(layout)
+        self.show()
 
 
 if __name__ == '__main__':
