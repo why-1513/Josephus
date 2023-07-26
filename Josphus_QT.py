@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QPushButton, QLabel, QFileDialog, QApplication
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QFileDialog, QMessageBox, QInputDialog
 from Josephus_deque import Josephus
 from TxtReader import TxtReader
 from ZipReader import ZipReader
@@ -25,7 +25,7 @@ class JosephusChooser(QWidget):
         # 创建选择程序类型按钮
         self.gui_button = QPushButton('GUI', self)
         self.gui_button.move(50, 80)
-
+        self.gui_button.clicked.connect(self.run_gui)
         self.console_button = QPushButton('Console', self)
         self.console_button.move(150, 80)
         self.console_button.clicked.connect(self.run_console)
@@ -41,6 +41,35 @@ class JosephusChooser(QWidget):
             options=options)
         if file_name:
             self.file_text.setText(file_name)
+
+    def run_gui(self):
+        file_name = self.file_text.text()
+        if not file_name:
+            QMessageBox.warning(self, 'Warning', 'Please select a file')
+            return
+        elif file_name.endswith('.txt'):
+            reader = TxtReader(file_name)
+        elif file_name.endswith('.csv'):
+            reader = CsvReader(file_name)
+        elif file_name.endswith('.zip'):
+            reader = ZipReader(file_name)
+        else:
+            print('Unsupported file type')
+            return
+
+        step_num, ok = QInputDialog.getInt(self, 'Step Number', 'Enter the step number:')
+        if not ok:
+            return
+        start_pos, ok = QInputDialog.getInt(self, 'Start Position', 'Enter the start position:')
+        if not ok:
+            return
+
+        josephus = Josephus(step_num, start_pos)
+        josephus.add_persons(reader)
+        for person in josephus:
+            pass
+
+        # 显示结果
 
     def run_console(self):
         file_name = self.file_text.text()
