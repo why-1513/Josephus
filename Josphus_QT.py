@@ -10,7 +10,7 @@ import sys
 import logging
 
 
-class JosephusChooser(QWidget):
+class GUIChooser(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Josephus Chooser')
@@ -173,5 +173,5 @@ if __name__ == '__main__':
     logging.basicConfig(filename='test.log', filemode='a',
                         format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
     app = QApplication(sys.argv)
-    chooser = JosephusChooser()
+    chooser = GUIChooser()
     sys.exit(app.exec_())
